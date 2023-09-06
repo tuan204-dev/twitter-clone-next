@@ -9,7 +9,6 @@ import SidebarTweetButton from './SidebarTweetButton'
 
 const Sidebar = () => {
   const { data: currentUser } = useCurrentUser()
-  console.log(currentUser)
 
   const items = [
     {
@@ -22,6 +21,7 @@ const Sidebar = () => {
       href: '/notifications',
       icon: BsBellFill,
       auth: true,
+      alert: currentUser?.hasNotification,
     },
     {
       label: 'Profile',
@@ -43,6 +43,7 @@ const Sidebar = () => {
               href={item.href}
               icon={item.icon}
               auth={item?.auth}
+              alert={item?.alert}
             />
           ))}
           {currentUser && (

@@ -1,13 +1,14 @@
-import serverAuth from '@/libs/serverAuth'
 import { NextApiRequest, NextApiResponse } from 'next'
+import serverAuth from '@/libs/serverAuth'
 import prisma from '@/libs/prismadb'
+
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   if (req.method !== 'PATCH') {
     return res.status(405).end()
   }
 
   try {
-    const { currentUser } = await serverAuth(req)
+    const { currentUser } = await serverAuth(req, res)
 
     const { name, username, bio, profileImage, coverImage } = req.body
 
@@ -17,7 +18,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
     const updatedUser = await prisma.user.update({
       where: {
-        id: currentUser?.id,
+        id: currentUser.id,
       },
       data: {
         name,
@@ -27,10 +28,10 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         coverImage,
       },
     })
+
     return res.status(200).json(updatedUser)
-  } catch (err) {
-    console.log('line: 31')
-    console.error(err)
-    res.status(400).end()
+  } catch (error) {
+    console.log(error)
+    return res.status(400).end()
   }
 }

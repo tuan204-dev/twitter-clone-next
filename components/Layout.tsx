@@ -17,6 +17,8 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
           lg:col-span-2
           border-x-[1px] 
           border-neutral-800
+          overflow-hidden
+          overflow-y-auto
           "
           >
             {children}

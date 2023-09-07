@@ -27,9 +27,9 @@ const CommentItem: React.FC<CommentItemProps> = ({ data }) => {
 
   return (
     <div className="border-b-[1px] border-neutral-800 p-5 cursor-pointer hover:bg-neutral-900 transition">
-      <div className="flex flex-row items-start gap-3">
-        <Avatar userId={data.user.id} />
-        <div>
+      <div className="flex flex-row items-start gap-3 overflow-hidden justify-start">
+        <div className='max-w-max'><Avatar userId={data.user.id} /></div>
+        <div className='flex-1 overflow-hidden'>
           <div className="flex flex-row items-center gap-2">
             <p
               onClick={goToUser}
@@ -46,7 +46,9 @@ const CommentItem: React.FC<CommentItemProps> = ({ data }) => {
             <span className="text-neutral-500 text-sm">{createdAt}</span>
           </div>
 
-          <div className="text-white mt-1">{data.body}</div>
+          <div className="text-white mt-1 w-full">
+            <p className='w-full text whitespace-normal	'>{data.body}</p>
+          </div>
         </div>
       </div>
     </div>

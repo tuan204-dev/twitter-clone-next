@@ -21,7 +21,7 @@ const Avatar: React.FC<AvatarProps> = ({ userId, hasBorder, isLarge }) => {
 
       router.push(url)
     },
-    [fetchedUser, router, userId]
+    [router, userId]
   )
 
   return (
@@ -31,10 +31,10 @@ const Avatar: React.FC<AvatarProps> = ({ userId, hasBorder, isLarge }) => {
         ${isLarge ? 'w-32' : 'w-12'}
         ${isLarge ? 'h-32' : 'h-12'}
         rounded-full
-        hover:opacity-90
         transition
         relative
         cursor-pointer
+        hover:brightness-90
       `}
     >
       <Image
@@ -42,7 +42,7 @@ const Avatar: React.FC<AvatarProps> = ({ userId, hasBorder, isLarge }) => {
         style={{ objectFit: 'cover', borderRadius: '100%' }}
         alt="Avatar"
         onClick={onClick}
-        sizes='full'
+        sizes="full"
         src={fetchedUser?.profileImage || '/images/placeholder.png'}
       />
     </div>

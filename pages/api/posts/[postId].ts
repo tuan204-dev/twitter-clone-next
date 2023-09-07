@@ -8,8 +8,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   try {
     const { postId } = req.query
 
-    console.log('postId file: ', postId)
-
     if (!postId || typeof postId !== 'string') {
       throw new Error('Invalid post id')
     }

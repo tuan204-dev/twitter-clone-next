@@ -29,9 +29,6 @@ const RegisterModal = () => {
   const onSubmit = useCallback(async () => {
     try {
       setLoading(true)
-      console.log('im here 32')
-
-      console.log(email, password, username, name)
 
       await axios.post('/api/register', {
         email,
@@ -51,7 +48,6 @@ const RegisterModal = () => {
 
       registerModal.onClose()
     } catch (error) {
-      console.log('error 49')
       console.log(error)
       toast.error('Something went wrong')
     } finally {
